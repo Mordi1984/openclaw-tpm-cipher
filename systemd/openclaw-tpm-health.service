@@ -1,0 +1,15 @@
+[Unit]
+Description=OpenClaw TPM Health Check & Auto-Repair
+After=network.target
+Before=openclaw-decrypt.service
+
+[Service]
+Type=oneshot
+User=%u
+ExecStart=/usr/bin/node %h/.openclaw/workspace/tpm-health-check.js
+StandardOutput=journal
+StandardError=journal
+RemainAfterExit=yes
+
+[Install]
+WantedBy=default.target

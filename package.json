@@ -1,6 +1,6 @@
 {
   "name": "openclaw-tpm-cipher",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Quantum-resistant encryption for OpenClaw with TPM 2.0 auto-unlock",
   "main": "lib/zodiac-cipher.js",
   "scripts": {

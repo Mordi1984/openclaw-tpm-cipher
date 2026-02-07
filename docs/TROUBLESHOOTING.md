@@ -78,6 +78,79 @@ Error: primary.ctx does not exist
 ```bash
 # Delete corrupted TPM files
 cd ~/.openclaw/.cipher
+
+
+### ❌ TPM Context Corruption (After Reboot/Kernel Update)
+
+**Symptoms:**
+```
+Error: Esys_ContextLoad(0x1DF) - tpm:parameter(1):integrity check failed
+Error: TPM load failed
+```
+
+**When does this happen?**
+- After kernel updates
+- After system reboot
+- After TPM service restart
+- After VM migration/snapshot restore
+
+**Why?**
+TPM context files (like `primary.ctx`) reference TPM objects by handle. After reboot, especially with kernel updates, these handles can become invalid. This is more common with **Software TPM (swtpm)** in virtual machines.
+
+**Solution 1: Automatic Repair (v1.0.2+)**
+
+The package now includes automatic TPM health check and repair!
+
+```bash
+# Enable auto-repair (runs at every boot)
+systemctl --user enable openclaw-tpm-health.service
+systemctl --user start openclaw-tpm-health.service
+
+# Check status
+systemctl --user status openclaw-tpm-health.service
+```
+
+**What it does:**
+1. ✅ Checks TPM health at boot
+2. ✅ Detects corruption automatically
+3. ✅ Backs up current state
+4. ✅ Reinitializes TPM
+5. ✅ Re-encrypts all files
+6. ✅ Takes ~5-10 seconds
+
+**Solution 2: Manual Repair**
+
+```bash
+# Run health check manually
+cd ~/.openclaw
+node workspace/tpm-health-check.js
+
+# Force repair (even if check passes)
+node workspace/tpm-health-check.js --force-repair
+```
+
+**Solution 3: Complete Manual Reset**
+
+```bash
+# 1. Backup encrypted files (IMPORTANT!)
+cd ~/.openclaw
+tar -czf tpm-backup-$(date +%Y%m%d).tar.gz \
+  .cipher/ credentials/*.enc openclaw.json.enc
+
+# 2. Delete corrupted TPM context
+rm -rf .cipher/
+
+# 3. Re-initialize and re-encrypt
+node workspace/production-encrypt.js
+```
+
+**Prevention:**
+
+The automatic health check (v1.0.2+) prevents this issue by running at every boot. It's enabled by default after installation.
+
+**Note:** This issue is more common with Software TPM (VMs). Hardware TPM on physical machines is more stable.
+
+---
 rm -f primary.ctx tpm.pub tpm.priv tpm.key
 
 # Reinitialize

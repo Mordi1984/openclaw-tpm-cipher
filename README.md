@@ -3,7 +3,7 @@
 **Quantum-resistant encryption for OpenClaw with hardware-bound automatic unlock using TPM 2.0**
 
 ![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)
-![Version](https://img.shields.io/badge/version-1.0.1-green.svg)
+![Version](https://img.shields.io/badge/version-1.0.2-green.svg)
 ![Platform](https://img.shields.io/badge/platform-Linux-lightgrey.svg)
 
 ---
@@ -107,6 +107,8 @@ Secures OpenClaw AI assistant credentials (WhatsApp, GitHub, API tokens) while m
 
 ### Operational Features
 - **Auto-decrypt on boot** via systemd service
+- **Automatic TPM health check** and repair (v1.0.2+)
+- **Context corruption detection** after kernel updates
 - **Backup preservation** (`.plain.bak` files before encryption)
 - **Encryption manifest** with statistics
 - **Selective file encryption** (credentials, sessions, secrets)
