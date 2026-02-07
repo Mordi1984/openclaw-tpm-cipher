@@ -696,22 +696,6 @@ See [CREDITS.md](CREDITS.md) for complete attribution.
 
 ---
 
-## 🚀 Roadmap
-
-**v1.1 (Planned):**
-- [ ] PCR binding (hardware attestation)
-- [ ] Multi-user support
-- [ ] Web UI for management
-- [ ] Key rotation mechanism
-
-**v2.0 (Future):**
-- [ ] HSM support (YubiKey, Nitrokey)
-- [ ] Remote TPM via network
-- [ ] Windows WSL2 support
-- [ ] GUI installer
-
----
-
 **Made with 🐾 by OpenClaw Community**
 
 **Star ⭐ this repo if it helped you secure your OpenClaw instance!**
