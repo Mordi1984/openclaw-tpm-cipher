@@ -28,13 +28,13 @@
 **Why does this exist?**
 
 OpenClaw stores sensitive data in plaintext by default:
-- WhatsApp session keys — Full chat access
+- **All channel credentials** (WhatsApp, Telegram, Discord, Signal, etc.) — Full account access
 - GitHub Copilot tokens — API access  
 - Gateway tokens — Remote control
-- Channel credentials — Your accounts
+- Any configured messaging platform sessions
 
 **If someone gains access to your VPS/VM disk** (backup leak, hypervisor breach, snapshot theft):
-- ❌ **Without encryption:** All credentials stolen → Account takeover
+- ❌ **Without encryption:** All credentials stolen → Account takeover across ALL channels
 - ✅ **With TPM Cipher:** Encrypted files are useless without hardware-bound key
 
 ---
@@ -58,24 +58,20 @@ Secures OpenClaw AI assistant credentials (WhatsApp, GitHub, API tokens) while m
 ```
 ~/.openclaw/
 ├── credentials/
-│   ├── github-copilot.token.json ✅ (API token)
-│   └── whatsapp/
-│       └── default/
-│           ├── app-state-sync-key-*.json ✅ (893 files)
-│           ├── creds.json ✅ (WhatsApp session)
-│           ├── pre-key-*.json ✅ (encryption keys)
-│           └── sender-key-*.json ✅ (E2E keys)
-│
-├── .whatsapp-sessions/
-│   └── default.session.json ✅ (session metadata)
+│   ├── github-copilot.token.json ✅
+│   ├── whatsapp/default/ ✅ (WhatsApp sessions)
+│   ├── telegram/default/ ✅ (Telegram, if configured)
+│   ├── discord/default/ ✅ (Discord, if configured)
+│   ├── signal/default/ ✅ (Signal, if configured)
+│   └── [any-channel]/default/ ✅ (All channels)
 │
 └── config/secrets/
-    └── *.token ✅ (API keys, if present)
+    └── *.token ✅ (API keys)
 ```
 
 **Total Encrypted:**
-- **~893 files** (881 successful in test)
-- **~26 MB** total size
+- **~900 files** (actual count depends on your channels)
+- **~20-50 MB** total size
 - **File types:** `.json`, `.token`, session data
 
 **What is NOT Encrypted:**
