@@ -1,0 +1,28 @@
+[Unit]
+Description=OpenClaw TPM Cipher Auto-Decrypt
+Documentation=https://github.com/YOUR_USERNAME/openclaw-tpm-cipher
+After=multi-user.target
+Before=openclaw-gateway.service
+ConditionPathExists=/home/%u/.openclaw/.cipher/tpm.priv
+
+[Service]
+Type=oneshot
+User=%u
+Group=%u
+WorkingDirectory=/home/%u/.openclaw
+ExecStartPre=/bin/sleep 3
+ExecStart=/usr/bin/node /home/%u/.openclaw/workspace/auto-decrypt.js
+TimeoutStartSec=120
+StandardOutput=journal
+StandardError=journal
+RemainAfterExit=yes
+
+# Security
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=read-only
+ReadWritePaths=/home/%u/.openclaw /home/%u/.config/openclaw
+
+[Install]
+WantedBy=multi-user.target

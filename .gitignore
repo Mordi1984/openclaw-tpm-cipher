@@ -1,0 +1,38 @@
+# Node modules
+node_modules/
+package-lock.json
+
+# Test files
+test-output/
+*.test.log
+
+# Sensitive data (NEVER commit!)
+*.key
+*.priv
+*.pub
+*.ctx
+*.enc
+*.plain.bak
+salt.bin
+.cipher/
+.encryption-manifest.json
+
+# Backups
+*.tar.gz
+*.zip
+backup-*/
+
+# OS
+.DS_Store
+Thumbs.db
+*~
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Logs
+*.log
+npm-debug.log*

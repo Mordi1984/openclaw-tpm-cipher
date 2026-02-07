@@ -1,0 +1,43 @@
+{
+  "name": "openclaw-tpm-cipher",
+  "version": "1.0.1",
+  "description": "Quantum-resistant encryption for OpenClaw with TPM 2.0 auto-unlock",
+  "main": "lib/zodiac-cipher.js",
+  "scripts": {
+    "test": "node scripts/test-cipher.js",
+    "encrypt": "node scripts/production-encrypt.js",
+    "decrypt": "node scripts/auto-decrypt.js",
+    "install-system": "sudo bash install.sh"
+  },
+  "keywords": [
+    "openclaw",
+    "encryption",
+    "tpm",
+    "tpm2.0",
+    "quantum-resistant",
+    "argon2",
+    "enigma",
+    "security",
+    "privacy"
+  ],
+  "author": "Lucas & Clawdy",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/YOUR_USERNAME/openclaw-tpm-cipher.git"
+  },
+  "bugs": {
+    "url": "https://github.com/YOUR_USERNAME/openclaw-tpm-cipher/issues"
+  },
+  "homepage": "https://github.com/YOUR_USERNAME/openclaw-tpm-cipher#readme",
+  "dependencies": {
+    "argon2": "^0.31.0"
+  },
+  "devDependencies": {},
+  "engines": {
+    "node": ">=16.0.0"
+  },
+  "os": [
+    "linux"
+  ]
+}
