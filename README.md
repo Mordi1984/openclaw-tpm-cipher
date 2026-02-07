@@ -28,7 +28,7 @@
 **Why does this exist?**
 
 OpenClaw stores sensitive data in plaintext by default:
-- WhatsApp session keys (~880 files) — Full chat access
+- WhatsApp session keys — Full chat access
 - GitHub Copilot tokens — API access  
 - Gateway tokens — Remote control
 - Channel credentials — Your accounts
