@@ -25,6 +25,20 @@
 
 ## 🔐 Overview
 
+**Why does this exist?**
+
+OpenClaw stores sensitive data in plaintext by default:
+- WhatsApp session keys (~880 files) — Full chat access
+- GitHub Copilot tokens — API access  
+- Gateway tokens — Remote control
+- Channel credentials — Your accounts
+
+**If someone gains access to your VPS/VM disk** (backup leak, hypervisor breach, snapshot theft):
+- ❌ **Without encryption:** All credentials stolen → Account takeover
+- ✅ **With TPM Cipher:** Encrypted files are useless without hardware-bound key
+
+---
+
 OpenClaw TPM Cipher is a production-ready encryption system that combines **quantum-resistant cryptography** with **hardware-bound automatic unlock** via TPM 2.0 (Trusted Platform Module). 
 
 **Key Benefits:**
